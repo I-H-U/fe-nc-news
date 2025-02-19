@@ -3,16 +3,17 @@ import { Link } from "react-router-dom";
 export default function ArticleCard({ article }) {
   return (
     <div className="article-card">
-      {console.log(article)}
-      <h3>{article.title}</h3>
+      <Link to={`/articles/${article.article_id}`}>
+        <h3>{article.title}</h3>
 
-      {article.article_img_url && (
-        <img
-          className="article-image"
-          src={article.article_img_url}
-          alt={article.title}
-        />
-      )}
+        {article.article_img_url && (
+          <img
+            className="article-image"
+            src={article.article_img_url}
+            alt={article.title}
+          />
+        )}
+      </Link>
       <br />
       <p className="article-info">
         <span>By {article.author}</span>

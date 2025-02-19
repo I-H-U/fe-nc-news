@@ -30,6 +30,7 @@ body {
   align-items: center;
   justify-content: space-between;
   min-height: 100%;
+  max-width: 400px;
 }
 
 .article-card:hover {
@@ -42,7 +43,7 @@ body {
   height: auto;
   max-height: 300px;
   object-fit: contain;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .article-card h3 {
@@ -63,4 +64,74 @@ body {
 
 .sub-intro {
   text-align: center;
+}
+
+.loading-message {
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 20px 0;
+  color: #333;
+  font-weight: bold;
+}
+
+.single-article-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.single-article {
+  width: 95%;
+  max-width: 800px;
+  margin: 40px 0;
+  padding: 20px;
+  background: #dcc7be;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.article-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+.article-info {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.author {
+  font-weight: bold;
+  color: #333;
+}
+
+.date,
+.topic,
+.comment-count,
+.votes {
+  font-style: italic;
+  color: #666;
+}
+
+.article-body {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #444;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.loading-message,
+.error-message {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
 }
