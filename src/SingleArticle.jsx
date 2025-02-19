@@ -1,50 +1,79 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getArticleById } from "./utils/api";
+import { getArticleById, getCommentsByArticleId } from "./utils/api";
+import CommentCard from "./components/CommentCard";
 
 export default function SingleArticle() {
   const { article_id } = useParams();
   const [loading, setLoading] = useState(true);
   const [article, setArticle] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getArticleById(article_id)
-      .then((data) => {
-        setArticle(data);
+    setLoading(true);
+
+    async function fetchData() {
+      try {
+        const [articleData, commentsData] = await Promise.all([
+          getArticleById(article_id),
+          getCommentsByArticleId(article_id),
+        ]);
+        setArticle(articleData);
+        setComments(commentsData);
+      } catch (error) {
+        setError("Whoops, something went wrong.....");
+      } finally {
         setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
+      }
+    }
+    fetchData();
   }, [article_id]);
 
   if (loading)
-    return <p className="loading-message">Loading articles, please wait...</p>;
+    return (
+      <p className="loading-message">
+        Loading articles, please wait...
+        <br />
+        <img src="/loading.gif" width="200px" />
+      </p>
+    );
 
-  if (!article) return <p className="error-message">Article not found</p>;
+  if (error) return <p className="error-message">{error}</p>;
   return (
-    <div className="single-article-container">
-      <div className="single-article">
-        <h2 className="article-title">{article.title}</h2>
-        <p className="article-info">
-          By <span className="author">{article.author}</span> |{" "}
-          <span className="date">
-            {new Date(article.created_at).toLocaleDateString("en-GB")}{" "}
-          </span>
-          | Topic: <span className="topic">{article.topic} </span>|{" "}
-          <span className="comment-count">
-            {article.comment_count} comments{" "}
-          </span>{" "}
-          | <span className="votes">{article.votes} votes </span>|
-        </p>
-        <img
-          className="article-image"
-          src={article.article_img_url}
-          alt={article.title}
-        />
-        <p className="article-body">{article.body}</p>
-      </div>
-    </div>
+    <section className="single-article-container">
+      {article && (
+        <section className="single-article">
+          <h2 className="article-title">{article.title}</h2>
+          <p className="article-info">
+            By <span className="author">{article.author}</span> |{" "}
+            <span className="date">
+              {new Date(article.created_at).toLocaleDateString("en-GB")}{" "}
+            </span>
+            | Topic: <span className="topic">{article.topic} </span>|{" "}
+            <span className="comment-count">
+              {article.comment_count} comments{" "}
+            </span>{" "}
+            | <span className="votes">{article.votes} votes </span>|
+          </p>
+          <img
+            className="article-image"
+            src={article.article_img_url}
+            alt={article.title}
+          />
+          <p className="article-body">{article.body}</p>
+        </section>
+      )}
+      <section className="article-comments">
+        <h3>Comments</h3>
+        {comments.length > 0 ? (
+          comments.map((comment) => (
+            <CommentCard comment={comment} key={comment.comment_id} />
+          ))
+        ) : (
+          <p>Be the first to comment...</p>
+        )}
+      </section>
+    </section>
   );
 }
