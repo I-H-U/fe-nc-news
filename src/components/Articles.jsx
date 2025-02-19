@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import ArticleCard from "./ArticleCard";
 import { getArticles } from "../utils/api";
 
 export default function Articles() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     getArticles()
@@ -14,16 +14,22 @@ export default function Articles() {
         setLoading(false);
       })
       .catch((err) => {
-        console.error(err);
+        setError("Whoops, something went wrong.....");
         setLoading(false);
       });
   }, []);
+
+  if (error) return { error };
 
   return (
     <div>
       <h2 className="sub-intro">Latest articles</h2>
       {loading ? (
-        <p className="loading-message">Loading articles, please wait...</p>
+        <p className="loading-message">
+          Loading articles, please wait...
+          <br />
+          <img src="/loading.gif" width="200px" />
+        </p>
       ) : (
         <div className="articles-container">
           {articles.map((article) => (
