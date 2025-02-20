@@ -199,7 +199,7 @@ footer {
   color: #ff5722;
 }
 
-.article-vote-container img {
+.upvote-article {
   width: 50px;
   cursor: pointer;
 }
@@ -207,4 +207,70 @@ footer {
 .upvote-article:hover {
   transform: scale(1.1);
   filter: brightness(1.1);
+}
+
+.downvote-article {
+  width: 60px;
+  cursor: pointer;
+  position: relative;
+  top: 5px;
+}
+
+.downvote-article:hover {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+.add-comment {
+  background-color: #ebdbd3;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.add-comment h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.comment-input {
+  width: 90%;
+  min-height: 80px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.comment-input:focus {
+  outline: none;
+  border-color: #555;
+}
+
+button {
+  background-color: #3d454e;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.success-message {
+  color: rgb(15, 80, 15);
+  font-size: 0.9rem;
+  margin-top: 5px;
 }
