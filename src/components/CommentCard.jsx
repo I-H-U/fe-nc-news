@@ -1,7 +1,7 @@
 export default function ({ comment }) {
   return (
     <section className="comment-card">
-      <p className="comment-body">
+      <div className="comment-body">
         {comment.body}
         <p className="comment-info">
           By <span className="comment-author">{comment.author}</span> |{" "}
@@ -10,7 +10,7 @@ export default function ({ comment }) {
           </span>{" "}
           |<span className="comment-votes"> {comment.votes} votes</span>
         </p>
-      </p>
+      </div>
     </section>
   );
 }

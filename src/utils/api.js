@@ -19,4 +19,9 @@ export const getCommentsByArticleId = async (article_id) => {
   return response.data.comments;
 };
 
+export const patchArticleVotes = async (article_id, inc_votes) => {
+  const response = await api.patch(`/articles/${article_id}`, { inc_votes });
+  return response.data.article;
+};
+
 export default api;
