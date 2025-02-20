@@ -36,6 +36,12 @@ export default function SingleArticle() {
     setComments((prevComments) => [newComment, ...prevComments]);
   };
 
+  const handleDeleteComment = (deletedCommentId) => {
+    setComments((prevComments) =>
+      prevComments.filter((comment) => comment.comment_id !== deletedCommentId)
+    );
+  };
+
   if (loading)
     return (
       <p className="loading-message">
@@ -82,7 +88,11 @@ export default function SingleArticle() {
         <AddComment article_id={article_id} addNewComment={addNewComment} />
         {comments.length > 0 ? (
           comments.map((comment) => (
-            <CommentCard comment={comment} key={comment.comment_id} />
+            <CommentCard
+              comment={comment}
+              key={comment.comment_id}
+              onDelete={handleDeleteComment}
+            />
           ))
         ) : (
           <p>Be the first to comment...</p>

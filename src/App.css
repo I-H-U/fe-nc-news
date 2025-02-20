@@ -274,3 +274,13 @@ button:disabled {
   font-size: 0.9rem;
   margin-top: 5px;
 }
+
+.bin {
+  width: 30px;
+  opacity: 0.7;
+}
+.bin:hover {
+  transform: scale(1.1);
+  rotate: 20deg;
+  cursor: pointer;
+}

@@ -32,4 +32,8 @@ export const postCommentByArticleId = async (article_id, commentData) => {
   return response.data.comment;
 };
 
+export const deleteCommentById = async (comment_id) => {
+  await api.delete(`/comments/${comment_id}`);
+};
+
 export default api;

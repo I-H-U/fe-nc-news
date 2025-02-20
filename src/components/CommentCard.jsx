@@ -1,4 +1,9 @@
-export default function ({ comment }) {
+import { UserContext } from "../contexts/UserContext";
+import { useContext } from "react";
+import RemoveComment from "./RemoveComment";
+
+export default function ({ comment, onDelete }) {
+  const { user } = useContext(UserContext);
   return (
     <section className="comment-card">
       <div className="comment-body">
@@ -10,6 +15,18 @@ export default function ({ comment }) {
           </span>{" "}
           |<span className="comment-votes"> {comment.votes} votes</span>
         </p>
+      </div>
+      <div className="user-comment">
+        {user.username === comment.author && (
+          <div className="delete-comment">
+            {
+              <RemoveComment
+                comment_id={comment.comment_id}
+                onDelete={onDelete}
+              />
+            }
+          </div>
+        )}
       </div>
     </section>
   );

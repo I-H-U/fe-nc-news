@@ -29,7 +29,6 @@ export default function ArticleVote({ initialVotes, article_id }) {
       }
     }
   };
-  console.log(initialVotes);
 
   return (
     <>
