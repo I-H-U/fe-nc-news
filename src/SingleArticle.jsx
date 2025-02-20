@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { getArticleById, getCommentsByArticleId } from "./utils/api";
 import CommentCard from "./components/CommentCard";
 import ArticleVote from "./components/ArticleVote";
+import AddComment from "./components/AddComment";
 
 export default function SingleArticle() {
   const { article_id } = useParams();
@@ -30,6 +31,10 @@ export default function SingleArticle() {
     }
     fetchData();
   }, [article_id]);
+
+  const addNewComment = (newComment) => {
+    setComments((prevComments) => [newComment, ...prevComments]);
+  };
 
   if (loading)
     return (
@@ -74,6 +79,7 @@ export default function SingleArticle() {
       )}
       <section className="article-comments">
         <h3>Comments</h3>
+        <AddComment article_id={article_id} addNewComment={addNewComment} />
         {comments.length > 0 ? (
           comments.map((comment) => (
             <CommentCard comment={comment} key={comment.comment_id} />

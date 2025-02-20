@@ -1,5 +1,4 @@
-import { useState, useContext } from "react";
-import { UserContext } from "../contexts/UserContext";
+import { useState } from "react";
 import { patchArticleVotes } from "../utils/api";
 
 export default function ArticleVote({ initialVotes, article_id }) {
@@ -46,7 +45,7 @@ export default function ArticleVote({ initialVotes, article_id }) {
         src="/thumbs-down.png"
         title="Downvote this article"
       />
-      <span className="votes">{initialVotes + votes} votes </span>
+      <span className="votes">{votes} votes </span>
     </>
   );
 }
