@@ -10,7 +10,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 50px;
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
@@ -94,6 +94,10 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+}
+
+.single-article p {
+  text-align: center;
 }
 
 .article-title {
@@ -193,4 +197,14 @@ footer {
 .comment-votes {
   font-size: 0.9rem;
   color: #ff5722;
+}
+
+.article-vote-container img {
+  width: 50px;
+  cursor: pointer;
+}
+
+.upvote-article:hover {
+  transform: scale(1.1);
+  filter: brightness(1.1);
 }

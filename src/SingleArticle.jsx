@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getArticleById, getCommentsByArticleId } from "./utils/api";
 import CommentCard from "./components/CommentCard";
+import ArticleVote from "./components/ArticleVote";
 
 export default function SingleArticle() {
   const { article_id } = useParams();
@@ -54,13 +55,20 @@ export default function SingleArticle() {
             <span className="comment-count">
               {article.comment_count} comments{" "}
             </span>{" "}
-            | <span className="votes">{article.votes} votes </span>|
           </p>
           <img
             className="article-image"
             src={article.article_img_url}
             alt={article.title}
           />
+          <section className="article-vote-container">
+            {
+              <ArticleVote
+                initialVotes={article.votes}
+                article_id={article_id}
+              />
+            }
+          </section>
           <p className="article-body">{article.body}</p>
         </section>
       )}
