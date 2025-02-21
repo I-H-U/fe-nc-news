@@ -284,3 +284,60 @@ button:disabled {
   rotate: 20deg;
   cursor: pointer;
 }
+
+.topics-container {
+  text-align: center;
+  padding: 20px;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.topics-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  max-width: 90%;
+}
+
+@media (max-width: 600px) {
+  .topics-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  .topic-item {
+    width: 85%;
+  }
+}
+
+.topic-item {
+  background-color: #e4915e;
+  padding: 15px 25px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  flex: 1 1 auto;
+  width: 160px;
+  min-height: 50px;
+  text-align: center;
+  margin: 5px;
+}
+
+.topic-link {
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.topic-item:hover {
+  background-color: #615d5a;
+  transform: translateY(-3px);
+}

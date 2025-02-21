@@ -19,7 +19,7 @@ export default function Articles() {
       });
   }, []);
 
-  if (error) return { error };
+  if (error) return <p>{error}</p>;
 
   return (
     <div>
