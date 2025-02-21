@@ -4,6 +4,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 .articles-container {
@@ -340,4 +341,38 @@ h2 {
 .topic-item:hover {
   background-color: #615d5a;
   transform: translateY(-3px);
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.sort-controls label {
+  font-weight: bold;
+  color: #333;
+}
+
+.sort-controls select {
+  padding: 5px;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.sort-controls button {
+  padding: 5px 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: #96908a;
+  transition: all 0.3s ease-in-out;
+}
+
+.sort-controls button:hover {
+  background-color: #615d5a;
+  transform: translateY(-2px);
 }

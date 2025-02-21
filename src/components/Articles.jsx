@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import ArticleCard from "./ArticleCard";
 import { getArticles } from "../utils/api";
+import SortControls from "./SortControls";
 
 export default function Articles() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [searchParams] = useSearchParams();
+  const sortBy = searchParams.get("sort_by") || "created_at";
+  const order = searchParams.get("order") || "desc";
+
   useEffect(() => {
-    getArticles()
+    setLoading(true);
+    getArticles(sortBy, order)
       .then((data) => {
         setArticles(data);
         setLoading(false);
@@ -17,13 +24,14 @@ export default function Articles() {
         setError("Whoops, something went wrong.....");
         setLoading(false);
       });
-  }, []);
+  }, [sortBy, order]);
 
-  if (error) return <p>{error}</p>;
+  if (error) return <p className="error-message">{error}</p>;
 
   return (
-    <div>
+    <section>
       <h2 className="sub-intro">Latest articles</h2>
+      <SortControls />
       {loading ? (
         <p className="loading-message">
           Loading articles, please wait...
@@ -37,6 +45,6 @@ export default function Articles() {
           ))}
         </div>
       )}
-    </div>
+    </section>
   );
 }
