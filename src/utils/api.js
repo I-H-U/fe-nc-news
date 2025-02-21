@@ -36,4 +36,14 @@ export const deleteCommentById = async (comment_id) => {
   await api.delete(`/comments/${comment_id}`);
 };
 
+export const getTopics = async () => {
+  const response = await api.get("/topics");
+  return response.data.topics;
+};
+
+export const getArticlesByTopic = async (topic) => {
+  const response = await api.get(`/articles?topic=${topic}`);
+  return response.data.articles;
+};
+
 export default api;
