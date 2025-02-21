@@ -15,13 +15,21 @@ export default function Articles() {
 
   useEffect(() => {
     setLoading(true);
+    setError(null);
+
     getArticles(sortBy, order)
       .then((data) => {
         setArticles(data);
         setLoading(false);
       })
       .catch((err) => {
-        setError("Whoops, something went wrong.....");
+        if (err.response?.status === 400) {
+          setError(
+            `Invalid sorting option. Please select a valid sort criteria.`
+          );
+        } else {
+          setError("Invalid query... Click the NC logo to start again...");
+        }
         setLoading(false);
       });
   }, [sortBy, order]);

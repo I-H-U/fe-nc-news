@@ -10,25 +10,30 @@ export default function TopicArticles() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const [searchParams] = useSearchParams();
+
   const sortBy = searchParams.get("sort_by") || "created_at";
   const order = searchParams.get("order") || "desc";
 
   useEffect(() => {
     setLoading(true);
+    setError(null);
+
     getArticlesByTopic(topic_slug, sortBy, order)
       .then((data) => {
         setArticles(data);
         setLoading(false);
       })
       .catch((err) => {
-        setError("Whoops, something went wrong.....");
+        if (err.response?.status === 404) {
+          setError(`The topic ${topic_slug} does not exist...`);
+        } else {
+          setError("Invalid query... Click the NC logo to start again...");
+        }
         setLoading(false);
       });
   }, [topic_slug, sortBy, order]);
 
-  //   if (loading) return <p>Loading articles...</p>;
   if (error) return <p>{error}</p>;
 
   return (

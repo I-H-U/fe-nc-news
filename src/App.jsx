@@ -4,10 +4,10 @@ import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import SingleArticle from "./SingleArticle";
 import Articles from "./components/Articles";
-import Footer from "./components/Footer";
 import { UserProvider } from "./contexts/UserContext";
 import Topics from "./components/Topics";
 import TopicArticles from "./components/TopicArticles";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -20,8 +20,8 @@ function App() {
           <Route path="/topics/:topic_slug" element={<TopicArticles />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/:article_id" element={<SingleArticle />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
-        <Footer />
       </UserProvider>
     </Router>
   );

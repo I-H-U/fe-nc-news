@@ -11,10 +11,14 @@ export default function AddComment({ article_id, addNewComment }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!comment.trim()) return;
+    if (!comment.trim()) {
+      setError("Please enter a valid comment!");
+      return;
+    }
 
     setIsSubmitting(true);
     setError(null);
+    setSuccessMessage(null);
 
     try {
       const newComment = await postCommentByArticleId(article_id, {
