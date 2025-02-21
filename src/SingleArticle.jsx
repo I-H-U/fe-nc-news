@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getArticleById, getCommentsByArticleId } from "./utils/api";
 import CommentCard from "./components/CommentCard";
@@ -7,6 +7,7 @@ import AddComment from "./components/AddComment";
 
 export default function SingleArticle() {
   const { article_id } = useParams();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [article, setArticle] = useState(null);
   const [comments, setComments] = useState([]);
@@ -14,6 +15,7 @@ export default function SingleArticle() {
 
   useEffect(() => {
     setLoading(true);
+    setError(null);
 
     async function fetchData() {
       try {
@@ -21,10 +23,15 @@ export default function SingleArticle() {
           getArticleById(article_id),
           getCommentsByArticleId(article_id),
         ]);
+
+        if (!articleData || Object.keys(articleData).length === 0) {
+          throw new Error("Article not found");
+        }
+
         setArticle(articleData);
         setComments(commentsData);
       } catch (error) {
-        setError("Whoops, something went wrong.....");
+        setError("The requested article does not exist.");
       } finally {
         setLoading(false);
       }
@@ -51,7 +58,14 @@ export default function SingleArticle() {
       </p>
     );
 
-  if (error) return <p className="error-message">{error}</p>;
+  if (error) {
+    return (
+      <section className="error-container">
+        <p className="error-message">{error}</p>
+        <button onClick={() => navigate("/")}>Return to Home</button>
+      </section>
+    );
+  }
   return (
     <section className="single-article-container">
       {article && (
