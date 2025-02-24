@@ -7,6 +7,10 @@ body {
   height: 100%;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 .articles-container {
   display: flex;
   flex-wrap: wrap;

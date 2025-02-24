@@ -2,6 +2,9 @@
 
 🚀 **Live Demo**: [NC News](https://ncnewslive.netlify.app/)
 
+⚠️ **Note:**  
+If this is your **first time visiting**, please wait **a few seconds** while the backend server wakes up. This happens because the backend is hosted on **Render**, which spins down when inactive.
+
 ---
 
 # 📂 Part 1 - Introduction

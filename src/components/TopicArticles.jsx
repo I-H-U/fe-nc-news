@@ -44,7 +44,8 @@ export default function TopicArticles() {
       {articles.length === 0 && <p>No articles available for this topic.</p>}
       {loading ? (
         <p className="loading-message">
-          Loading articles, please wait...
+          ⏳ First-time loading may take a few seconds as the server starts
+          up...
           <br />
           <img src="/loading.gif" width="200px" />
         </p>
